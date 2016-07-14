@@ -45,11 +45,12 @@ All params for launchReporters are optional, if you dont pass them, they'll skip
 
 Since not all project will match the default values, you can customize it, each reporter has params :
 
-* src : the gulp.src params to use for the task, probably the only one you'll have to override
-* report : the report json file path to use
-* rulesFile : the rules file to use
-* task : the gulp task name to use for the report
-* base : (for eslint only) the base folder for seeking sources
+* src: the gulp.src params to use for the task, probably the only one you'll have to override
+* report: the report json file path to use
+* rulesFile: the rules file to use
+* task: the gulp task name to use for the report
+* base: (for eslint only) the base folder for seeking sources
+* linter: the gulp linter wrapper to use for the report
 
 # Default values
 
@@ -61,48 +62,55 @@ gulp.task('lint', function() {
           src: "src/**/*.css",
           report: "reports/sonar/csslint.json",
           rulesFile: ".csslintrc",
-          task: "ci-csslint"
+          task: "ci-csslint",
+          linter: require("gulp-csslint")
         },
         scss: {
           src: "src/**/*.scss",
           report: "reports/sonar/scsslint.json",
           rulesFile: ".scsslintrc",
-          task: "ci-scsslint"
+          task: "ci-scsslint",
+          linter: require("gulp-scss-lint")
         },
         html: {
           src: "src/**/*.html",
           report: "reports/sonar/htmlhint.json",
           rulesFile: ".htmlhintrc",
-          task: "ci-htmlhint"
+          task: "ci-htmlhint",
+          linter: require("gulp-htmlhint")
         },
         js: {
           src: "src/**/*.js",
           report: "reports/sonar/jshint.json",
           rulesFile: ".jshintrc",
-          task: "ci-jshint"
+          task: "ci-jshint",
+          linter: require("gulp-jshint")
         },
         eslint: {
           src: "src/**/*.js",
           report: "reports/sonar/eslint.json",
           rulesFile: ".eslintrc",
           task: "ci-eslint",
-          base: "src"
+          base: "src",
+          linter: require("gulp-eslint")
         },
         eslint_angular: {
           src: "src/**/*.js",
           report: "reports/sonar/eslint-angular.json",
           rulesFile: ".eslintrc",
           task: "ci-eslint-angular",
-          base: "src"
+          base: "src",
+          linter: require("gulp-eslint")
         },
         ts: {
           src: "src/**/*.ts",
           report: "reports/sonar/tslint.json",
           rulesFile: "tslint.json",
-          task: "ci-tslint"
+          task: "ci-tslint",
+          linter: require("gulp-tslint")
         },
         callback: function() {
-          console.log('Linting ended !');
+          console.log('Linting ended!');
         }
     });
 });
