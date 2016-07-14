@@ -112,7 +112,7 @@ function SonarWebReporters() {
                 eslintAngularTask = options.eslint_angular.task || "ci-eslint-angular",
                 eslintAngularBase = options.eslint_angular.base || "src",
                 eslintAngularReporter = new this.ESAngularReporter(eslintAngularPath, eslintAngularBase);
-            createReportPath(eslintAngularTask);
+            createReportPath(eslintAngularPath);
 
             gulp.task(eslintAngularTask, function () {
                 eslintAngularReporter.openReporter(projectName, eslintAngularPath);
@@ -133,7 +133,7 @@ function SonarWebReporters() {
                 eslintTask = options.eslint.task || "ci-eslint",
                 eslintBase = options.eslint.base || "src",
                 eslintReporter = new this.ESReporter(eslintPath, eslintBase);
-            createReportPath(eslintTask);
+            createReportPath(eslintPath);
 
             gulp.task(eslintTask, function () {
                 eslintReporter.openReporter(projectName, eslintPath);
